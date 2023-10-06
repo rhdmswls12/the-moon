@@ -1,13 +1,7 @@
 import styled from "styled-components";
 import TodoItem from "./TodoItem";
-import {createGlobalStyle} from 'styled-components';
 import { useTodoState } from "../TodoContext";
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    background: #e9ecef;
-  }
-`
 
 const TodoListBlock = styled.div`
   flex: 1;
@@ -19,7 +13,6 @@ export default function TodoList() {
 
   return (
   <>
-    <GlobalStyle></GlobalStyle>
     <TodoListBlock>
     {todos.map(todo => (
       <TodoItem 

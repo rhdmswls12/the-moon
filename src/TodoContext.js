@@ -22,6 +22,28 @@ const initialTodos = [
     done: false
   }
 ]
+const backgroundModes = [
+  {
+    mode: 'sunrise',
+    bgColor: '#FA8072',
+    textColor: '#ccc'
+  },
+  {
+    mode: 'day',
+    bgColor: '#f8f7f4',
+    textColor: '#31302e'
+  },
+  {
+    mode: 'sunset',
+    bgColor: 'FF4500',
+    textColor: '#31302e'
+  },
+  {
+    mode: 'night',
+    bgColor: '#1e1e22',
+    textColor: '#ccc'
+  }
+]
 
 function todoReducer(state, action) { // 복잡한 로직을 처리하여 상태 값을 변경 시키는 부분
   switch (action.type) {
@@ -54,7 +76,9 @@ export function TodoProvider({children}) {
     <TodoStateContext.Provider value={state}> 
       <TodoDispatchContext.Provider value={dispatch}>
         <TodoNextIdContext.Provider value={nextId}>
-          {children}
+          <ThemeContext.Provider value={backgroundModes}>
+            {children}
+          </ThemeContext.Provider>
         </TodoNextIdContext.Provider>
       </TodoDispatchContext.Provider>
     </TodoStateContext.Provider>
@@ -83,7 +107,13 @@ export function useTodoNextId() {
   }
   return context
 }
-
+export function useTheme() {
+  const context = useContext(ThemeContext)
+  if (!context) {
+    throw new Error('Cannot find TodoProvider')
+  }
+  return context
+}
 
 export const lightTheme = {
   bgColor: '#f8f7f4',

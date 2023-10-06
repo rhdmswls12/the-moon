@@ -2,13 +2,7 @@ import styled from "styled-components";
 import {BsFillBookmarkFill} from 'react-icons/bs'
 import DiaryHead from "./DiaryHead";
 import DiaryCreate from "./DiaryCreate";
-import {createGlobalStyle} from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    background: #e9ecef;
-  }
-`
 const DiaryTemplateBlock = styled.div`
   width: 512px;
   height: 768px;
@@ -44,7 +38,6 @@ const BookMark = styled.div`
 export default function DiaryTemplate() {
   return (
     <>
-      <GlobalStyle></GlobalStyle>
       <DiaryTemplateBlock>
         <BookMark>
           <BsFillBookmarkFill/>

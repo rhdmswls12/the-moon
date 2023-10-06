@@ -1,14 +1,13 @@
 import styled from "styled-components";
-import {createGlobalStyle} from 'styled-components';
 import {BsFillSunFill, BsFillLightbulbFill, BsFillCalendarCheckFill} from 'react-icons/bs'
 import { Link } from "react-router-dom";
 import {FaPenNib} from 'react-icons/fa6'
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    background: #e9ecef;
-  }
-`
+// const GlobalStyle = createGlobalStyle`
+//   body {
+//     background: #e9ecef;
+//   }
+// `
 const Light = styled.div`
   font-size: 50px;
   position: absolute;
@@ -60,11 +59,10 @@ const DiaryIcon = styled.button`
     cursor: pointer;
   }
 `
-export default function Main() {
+export default function Main({ toggleMode}) {
   return (
     <>
-      <GlobalStyle></GlobalStyle>
-      <Light>
+      <Light onClick={toggleMode}>
         <BsFillLightbulbFill />
       </Light>
       <Link to="/todo">
@@ -72,7 +70,7 @@ export default function Main() {
           <BsFillCalendarCheckFill />
         </TodoIcon>
       </Link>
-      <Link to="/diary">
+      <Link to="/diary"> 
         <DiaryIcon>
           <FaPenNib />
         </DiaryIcon>
