@@ -1,0 +1,27 @@
+{
+  "todoList": [
+    {
+      "id": 1,
+      "content": "공부하기",
+      "isDone": false
+    },
+    {
+      "id": 2,
+      "content": "운동하기",
+      "isDone": false
+    },
+    {
+      "id": 3,
+      "content": "넷플",
+      "isDone": false
+    }
+  ],
+  "diaries": [
+    {
+      "id": 1,
+      "date": "2023.10.3",
+      "title": "제목",
+      "content": "카공함"
+    }
+  ]
+}
