@@ -1,17 +1,17 @@
 export const sunriseTheme = {
-  bgColor: '#FA8072',
+  bgColor: ['#8d38c9','#e38aa3', '#e799a3', '#fcdfff'],
   textColor: '#ccc' 
 }
 export const dayTheme = {
-  bgColor: '#f8f7f4',
+  bgColor: ['#0041c2','#1569c7','#7dfdfe','#bdedff'],
   textColor: '#31302e' 
 }
 export const sunsetTheme = {
-  bgColor: '#FF4500',
+  bgColor: ['#ff2400','#f88017','#ff7f50','#faafbe'],
   textColor: '#31302e' 
 }
 export const nightTheme = {
-  bgColor: '#1e1e22',
+  bgColor: ['#1d2c41','#b7c9d9','#4fa3f0','#22131a'],
   textColor: '#ccc' 
 }
 export const theme = {

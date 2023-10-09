@@ -114,16 +114,3 @@ export function useTheme() {
   }
   return context
 }
-
-export const lightTheme = {
-  bgColor: '#f8f7f4',
-  textColor: '#31302e'
-}
-export const darkTheme = {
-  bgColor: '#1e1e22',
-  textColor: '#ccc'
-}
-export const theme = {
-  lightTheme,
-  darkTheme
-}

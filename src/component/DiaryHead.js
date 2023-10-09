@@ -11,6 +11,7 @@ const DiaryHeadBlock = styled.div`
     margin: 0;
     font-size: 36px;
     color: #343a40;
+    font-weight: 700;
   }
   .day {
     margin-top: 4px;

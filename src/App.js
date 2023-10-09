@@ -1,5 +1,6 @@
 import './App.css';
-import styled, {createGlobalStyle, ThemeProvider} from 'styled-components'
+import reset from 'styled-reset';
+import styled, {keyframes, ThemeProvider, createGlobalStyle} from 'styled-components'
 import Main from './component/Main';
 import TodoTemplate from './component/TodoTemplate';
 import DiaryTemplate from './component/DiaryTemplate';
@@ -8,11 +9,40 @@ import {Routes, Route, Link} from 'react-router-dom';
 import { sunriseTheme, dayTheme, sunsetTheme, nightTheme } from './theme';
 import { useState } from 'react';
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: ${props => props.theme.bgColor};
-    color: ${props => props.theme.textColor};
+export const backgroundChange = keyframes`
+  0% {
+    background-position: 0 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+`
+export const GlobalStyle = createGlobalStyle`
+  ${reset}
+    body {
+      background-image: linear-gradient(
+        -45deg,
+        ${props=>props.theme.bgColor[0]},
+        ${props=>props.theme.bgColor[1]},
+        ${props=>props.theme.bgColor[2]},
+        ${props=>props.theme.bgColor[3]}
+      );
+      color: ${props => props.theme.textColor};
+      background-repeat: no-repeat;
+      position: relative;
+      background-size: 400% 400%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 1000px;
+      overflow: hidden;
+      transition: all ease 2s 1s;
+      animation : ${backgroundChange} 20s ease-in-out infinite;
+    }
 `
 function App() {
   const [modes, setMode] = useState([sunriseTheme, dayTheme, sunsetTheme, nightTheme ])

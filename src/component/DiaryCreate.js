@@ -6,6 +6,7 @@ const DiaryArea = styled.div`
  height: 100%;
  background: #F0F8FF;
  position: relative;
+ border-radius: 16px;
 `
 const Diary = styled.form`
   textarea {
@@ -14,7 +15,7 @@ const Diary = styled.form`
     width: 448px;
     height: 550px;
     background: #fff;
-    border-radius: 4px;
+    border-radius: 16px;
     position: relative;
     margin: 0 auto;
     padding: 10px;

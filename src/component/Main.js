@@ -3,11 +3,7 @@ import {BsFillSunFill, BsFillLightbulbFill, BsFillCalendarCheckFill} from 'react
 import { Link } from "react-router-dom";
 import {FaPenNib} from 'react-icons/fa6'
 
-// const GlobalStyle = createGlobalStyle`
-//   body {
-//     background: #e9ecef;
-//   }
-// `
+
 const Light = styled.div`
   font-size: 50px;
   position: absolute;
