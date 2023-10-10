@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useRef } from "react";
+import { createContext, useContext, useReducer, useRef, useEffect } from "react";
 
 const initialTodos = [
   {
@@ -14,11 +14,6 @@ const initialTodos = [
   {
     id: 3,
     text: 'context 만들기',
-    done: false
-  },
-  {
-    id: 4,
-    text: '기능 구현하기',
     done: false
   }
 ]
@@ -71,7 +66,7 @@ const ThemeContext = createContext();
 
 export function TodoProvider({children}) {
   const [state, dispatch] = useReducer(todoReducer, initialTodos) // useReducer 사용, 초기값은 initialTodos고 dispatch로 주문(=action)이 들어오면 todoReducer 함수를 실행하여 주문에 대한 로직을 처리해 변경된 state를 반환한다.
-  const nextId = useRef(5);
+  const nextId = useRef(state[state.length-1].id+1);
   return ( // 컴포넌트 별로 그 바깥을 context의 Provider로 감싸던 방법을 아예 새로운 컴포넌트를 만들어 Provider들로 감싸도록 하고 children의 만든 컴포넌트들이 들어가도록 함.
     <TodoStateContext.Provider value={state}> 
       <TodoDispatchContext.Provider value={dispatch}>

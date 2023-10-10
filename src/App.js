@@ -9,7 +9,7 @@ import {Routes, Route, Link} from 'react-router-dom';
 import { sunriseTheme, dayTheme, sunsetTheme, nightTheme } from './theme';
 import { useState } from 'react';
 
-export const backgroundChange = keyframes`
+const backgroundChange = keyframes`
   0% {
     background-position: 0 50%;
   }
@@ -20,7 +20,7 @@ export const backgroundChange = keyframes`
     background-position: 0 50%;
   }
 `
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   ${reset}
     body {
       background-image: linear-gradient(
@@ -38,12 +38,13 @@ export const GlobalStyle = createGlobalStyle`
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 1000px;
+      height: 900px;
       overflow: hidden;
       transition: all ease 2s 1s;
       animation : ${backgroundChange} 20s ease-in-out infinite;
     }
 `
+
 function App() {
   const [modes, setMode] = useState([sunriseTheme, dayTheme, sunsetTheme, nightTheme ])
   const toggleMode = () => {
@@ -66,7 +67,6 @@ function App() {
           </Routes>
         </ThemeProvider>
       </TodoProvider>
-      
     </div>
   );
 }
