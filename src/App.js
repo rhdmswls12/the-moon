@@ -41,7 +41,7 @@ const GlobalStyle = createGlobalStyle`
       height: 900px;
       overflow: hidden;
       transition: all ease 2s 1s;
-      animation : ${backgroundChange} 20s ease-in-out infinite;
+      animation : ${backgroundChange} 10s ease-in-out infinite;
     }
 `
 

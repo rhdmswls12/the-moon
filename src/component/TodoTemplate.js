@@ -11,16 +11,17 @@ const TodoTemplateBlock = styled.div`
   border-radius: 16px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
   margin: 0 auto;
-  margin-bottom: 32px;
   display: flex;
+  margin-top: 100px;
   flex-direction: column;
 `
 
 export default function TodoTemplate() {
   return (
-  <TodoTemplateBlock>
-    <TodoHead />
-    <TodoList />
-    <TodoCreate />
-  </TodoTemplateBlock>)
+    <TodoTemplateBlock>
+      <TodoHead />
+      <TodoList />
+      <TodoCreate />
+    </TodoTemplateBlock>
+  )
 }

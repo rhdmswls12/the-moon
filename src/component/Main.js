@@ -10,7 +10,7 @@ const Cloud1 = styled.img`
   width: 500px;
   height: 300px;
   position: absolute;
-  bottom: 150px;
+  bottom: 170px;
   left: 50px;
   z-index: -1;
 `
@@ -19,14 +19,14 @@ const Cloud2 = styled.img`
   height: 200px;
   position: absolute;
   left: 250px;
-  bottom: 120px;
+  bottom: 140px;
   z-index: -2;
 `
 const Cloud3 = styled.img`
   width: 450px;
   height: 200px;
   position: absolute;
-  bottom: 80px;
+  bottom: 130px;
   left: 0px;
   z-index: -2;
   overflow: hidden;
