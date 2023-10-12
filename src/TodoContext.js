@@ -43,11 +43,20 @@ const backgroundModes = [
 function todoReducer(state, action) { // 복잡한 로직을 처리하여 상태 값을 변경 시키는 부분
   switch (action.type) {
     case 'CREATE':
-      return state.concat(action.todo) // state를 직접 변경 시켜 반환
+      state = state.concat(action.todo)
+      const objString = JSON.stringify(state)
+      window.localStorage.setItem('ToDoList',objString)
+      console.log(state)
+      return state 
+      
     case 'TOGGLE':
-      return state.map(todo =>
-        todo.id === action.id ? {...todo, done: !todo.done} : todo
+      const todoString = window.localStorage.getItem('ToDoList')
+      const todoJson = JSON.parse(todoString)
+      todoJson.map(todo => 
+        todo.id === action.id ? localStorage.setItem('ToDoList', JSON.stringify({...todo, done: !todo.done} )) 
+        : localStorage.setItem('ToDoList', JSON.stringify(todo ))
       )
+      return todoJson
     case 'MODIFY': // 추후 수정
       return state.map(todo =>
         todo.id === action.id ? {...action.todo} : todo
