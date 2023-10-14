@@ -45,18 +45,17 @@ function todoReducer(state, action) { // 복잡한 로직을 처리하여 상태
     case 'CREATE':
       state = state.concat(action.todo)
       const objString = JSON.stringify(state)
-      window.localStorage.setItem('ToDoList',objString)
-      console.log(state)
+      window.localStorage.setItem('ToDoList', objString)
       return state 
       
     case 'TOGGLE':
       const todoString = window.localStorage.getItem('ToDoList')
       const todoJson = JSON.parse(todoString)
-      todoJson.map(todo => 
-        todo.id === action.id ? localStorage.setItem('ToDoList', JSON.stringify({...todo, done: !todo.done} )) 
-        : localStorage.setItem('ToDoList', JSON.stringify(todo ))
-      )
+      const newList = state.map((item, i) => 
+      i === (action.id-1) ? {...item, done: !item.done} : item)
+      window.localStorage.setItem('ToDoList', JSON.stringify(newList))
       return todoJson
+
     case 'MODIFY': // 추후 수정
       return state.map(todo =>
         todo.id === action.id ? {...action.todo} : todo
