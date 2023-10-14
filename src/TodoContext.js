@@ -3,18 +3,8 @@ import { createContext, useContext, useReducer, useRef, useEffect } from "react"
 const initialTodos = [
   {
     id: 1,
-    text: '프로젝트 생성하기',
+    text: '할 일을 추가하세요.',
     done: true
-  },
-  {
-    id: 2,
-    text: '컴포넌트 스타일링',
-    done: true
-  },
-  {
-    id: 3,
-    text: 'context 만들기',
-    done: false
   }
 ]
 const backgroundModes = [
@@ -61,7 +51,16 @@ function todoReducer(state, action) { // 복잡한 로직을 처리하여 상태
         todo.id === action.id ? {...action.todo} : todo
       )
     case 'REMOVE':
-      return state.filter(todo => todo.id !== action.id)
+      const todoStringForRemove = window.localStorage.getItem('ToDoList')
+      const todoJsonForRemove = JSON.parse(todoStringForRemove)
+      if (todoJsonForRemove.length > 0) {
+        const filteredList = state.filter(todo => todo.id !== action.id)
+        window.localStorage.setItem('ToDoList', JSON.stringify(filteredList))
+        return todoJsonForRemove
+      } else {
+        return initialTodos
+      }
+
     default: 
       throw new Error(`Unhandled action type: ${action.type}`)
   }
