@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useRef, useEffect } from "react";
 
-const initialTodos = [
+let initialTodos = [
   {
     id: 1,
     text: '할 일을 추가하세요.',
@@ -33,23 +33,32 @@ const backgroundModes = [
 function todoReducer(state, action) { // 복잡한 로직을 처리하여 상태 값을 변경 시키는 부분
   switch (action.type) {
     case 'CREATE':
+      
       state = state.concat(action.todo)
+      if (state[0].id == 1) {
+        state.splice(0, 1)
+      }
       const objString = JSON.stringify(state)
       window.localStorage.setItem('ToDoList', objString)
+      
       return state 
       
     case 'TOGGLE':
       const todoString = window.localStorage.getItem('ToDoList')
       const todoJson = JSON.parse(todoString)
-      const newList = state.map((item, i) => 
-      i === (action.id-1) ? {...item, done: !item.done} : item)
+      const newList = state.map(item => 
+      item.id === action.id ? {...item, done: !item.done} : item)
       window.localStorage.setItem('ToDoList', JSON.stringify(newList))
       return todoJson
 
-    case 'MODIFY': // 추후 수정
-      return state.map(todo =>
-        todo.id === action.id ? {...action.todo} : todo
-      )
+    case 'MODIFY': 
+      const todoStringForModify = window.localStorage.getItem('ToDoList')
+      const todoJsonForModify = JSON.parse(todoStringForModify)
+      const listForModify = state.map(item =>
+      item.id === action.todo.id ? {...item, text: action.todo.text} : item)
+      window.localStorage.setItem('ToDoList', JSON.stringify(listForModify))
+      return todoJsonForModify
+
     case 'REMOVE':
       const todoStringForRemove = window.localStorage.getItem('ToDoList')
       const todoJsonForRemove = JSON.parse(todoStringForRemove)
