@@ -6,26 +6,32 @@ import cloud1 from '../img/cloud1.png'
 import cloud2 from '../img/cloud2.png'
 import cloud3 from '../img/cloud3.png'
 
+const Sky = styled.div`
+  width: 100%;
+  height: 50vh;
+  background-color: transparent;
+  z-index:-3;
+`
 const Cloud1 = styled.img`
   width: 500px;
   height: 300px;
-  position: absolute;
-  bottom: 170px;
-  left: 50px;
+  position: relative;
+  bottom: 100px;
+  left: 100px;
   z-index: -1;
 `
 const Cloud2 = styled.img`
   width: 500px;
   height: 200px;
-  position: absolute;
+  position: relative;
   left: 250px;
-  bottom: 140px;
+  bottom: 50px;
   z-index: -2;
 `
 const Cloud3 = styled.img`
   width: 450px;
   height: 200px;
-  position: absolute;
+  position: relative;
   bottom: 130px;
   left: 0px;
   z-index: -2;
@@ -34,13 +40,13 @@ const Cloud3 = styled.img`
 const Cloud4 = styled.img`
   width: 450px;
   height: 200px;
-  position: absolute;
-  top: 150px;
+  position: relative;
+  bottom: 70px;
   right: 20px;
 `
 const Bottom = styled.div`
   width: 100%;
-  height: 250px;
+  height: 40vh;
   background: linear-gradient(rgba(0,0,139, .5),rgba(30,144,255,.5),rgba(135, 206,235,.5),rgba(240,255, 255,.5));
   position: absolute;
   left: 0;
@@ -104,10 +110,12 @@ export default function Main({ toggleMode}) {
       <Light onClick={toggleMode}>
         <BsFillLightbulbFill />
       </Light>
-      <Cloud1 src={cloud1} />
-      <Cloud2 src={cloud2} />
-      <Cloud3 src={cloud3} />
-      <Cloud4 src={cloud2} />
+      <Sky>
+        <Cloud1 src={cloud1} />
+        <Cloud2 src={cloud2} />
+        <Cloud3 src={cloud3} />
+        <Cloud4 src={cloud2} />
+      </Sky>
       <Link to="/todo">
         <TodoIcon>
           <BsFillCalendarCheckFill />
@@ -118,7 +126,8 @@ export default function Main({ toggleMode}) {
           <FaPenNib />
         </DiaryIcon>
       </Link>
-      <Bottom></Bottom>
+      <Bottom>
+      </Bottom>
    </>
   )
 }

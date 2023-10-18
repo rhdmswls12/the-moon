@@ -1,18 +1,16 @@
 import styled from "styled-components";
 import TodoItem from "./TodoItem";
-import { useTodoState } from "../TodoContext";
-import { useEffect } from "react";
-
+import React from "react";
 
 const TodoListBlock = styled.div`
   flex: 1;
   padding: 20px 32px;
   padding-bottom: 48px;
 `
-export default function TodoList() {
-  const todos = useTodoState() // 컴포넌트 내부에서 useContext를 사용해 context값을 읽어오던 내용을 커스텀 hook을 통해 바로 불러옴.
+function TodoList() {
   const todoString = window.localStorage.getItem('ToDoList')
   const todoJson = JSON.parse(todoString)
+  console.log(todoJson)
   return (
   <>
     <TodoListBlock>
@@ -29,3 +27,4 @@ export default function TodoList() {
   </>
   )
 }
+export default React.memo(TodoList)

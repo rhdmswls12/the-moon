@@ -117,12 +117,19 @@ const Editing = styled.input`
   font-size: 21px;
   color: #495057;
   text-align: left;
+  &:focus {
+    border: 2px solid #38d9a9;
+    outline: none;
+  }
 `
 
 function TodoItem({id, done, text}) {
   const [edit, setEdit] = useState(false)
   const [value, setValue] = useState('');
-  const onEdit = () => {setEdit(!edit)}
+  const onEdit = () => {
+    setEdit(!edit);
+    setValue(text)
+  }
   
   const dispatch = useTodoDispatch(); // dispatch context에 담긴 dispatch를 가져옴
   const onToggle = () => dispatch({type: 'TOGGLE', id}); // 가져온 dispatch를 사용하여 action은 'TOGGLE'을 전달하고 id 값 역시 객체로 묶어 전달
@@ -140,6 +147,7 @@ function TodoItem({id, done, text}) {
     })
     onEdit()
   }
+  
   return (
     <TodoItemBlock>
       <CheckCircle done={done} onClick={onToggle}>
@@ -151,13 +159,13 @@ function TodoItem({id, done, text}) {
         </Editing>
       </>
       )
-      : (<Text done={done}>{text}</Text>)}
+      : (<Text done={done} >{text}</Text>)}
       
       {edit ? (<>
       <Finish onClick={onModify}>
         <BsCheckLg />
       </Finish>
-      <Cancel>
+      <Cancel onClick={onEdit}>
         <MdOutlineCancel />
       </Cancel></>)
       : (<>

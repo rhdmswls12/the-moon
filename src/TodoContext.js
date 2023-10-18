@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useRef, useEffect } from "react";
+import { createContext, useContext, useReducer, useRef } from "react";
 
 let initialTodos = [
   {
@@ -29,7 +29,14 @@ const backgroundModes = [
     textColor: '#ccc'
   }
 ]
+let initialDiary = [
+  {
+    id: 1,
+    text:''
+  }
+]
 
+// 투두 리스트
 function todoReducer(state, action) { // 복잡한 로직을 처리하여 상태 값을 변경 시키는 부분
   switch (action.type) {
     case 'CREATE':
@@ -75,20 +82,62 @@ function todoReducer(state, action) { // 복잡한 로직을 처리하여 상태
   }
 }
 
+// 일기
+// function diaryReducer(state, action) {
+//   switch(action.type) {
+//     case 'CREATE':
+//       console.log(state)
+//       state = state.concat(action.diary)
+//       if (state[0].id == 1) {
+//         state.splice(0, 1)
+//       }
+//       const objString = JSON.stringify(state)
+//       window.localStorage.setItem('Diaries', objString)
+//       return state
+
+//     case 'UPDATE':
+//       return state
+
+//     case 'SAVE':
+//       return state
+      
+//     case 'DELETE':
+//       return state
+
+//     default: 
+//       throw new Error(`Unhandled action type: ${action.type}`)
+//   }
+// }
+
+// 투두 리스트
 const TodoStateContext = createContext(); // state에 대한 context 생성
 const TodoDispatchContext = createContext(); // dispatch에 대한 context 생성
 const TodoNextIdContext = createContext();
 const ThemeContext = createContext();
+// 다이어리
+// const DiaryStateContext = createContext(); // 일기 state
+// const DiaryDispatchContext = createContext();
+// const DiaryNextIdContext = createContext();
 
 export function TodoProvider({children}) {
   const [state, dispatch] = useReducer(todoReducer, initialTodos) // useReducer 사용, 초기값은 initialTodos고 dispatch로 주문(=action)이 들어오면 todoReducer 함수를 실행하여 주문에 대한 로직을 처리해 변경된 state를 반환한다.
   const nextId = useRef(state[state.length-1].id+1);
+
+  // const [diaryState, diaryDispatch] = useReducer(diaryReducer, initialDiary)
+  // const diaryNextId = useRef(state[state.length-1].id+1)
+ 
   return ( // 컴포넌트 별로 그 바깥을 context의 Provider로 감싸던 방법을 아예 새로운 컴포넌트를 만들어 Provider들로 감싸도록 하고 children의 만든 컴포넌트들이 들어가도록 함.
     <TodoStateContext.Provider value={state}> 
       <TodoDispatchContext.Provider value={dispatch}>
         <TodoNextIdContext.Provider value={nextId}>
           <ThemeContext.Provider value={backgroundModes}>
-            {children}
+          {/* <DiaryStateContext.Provider value={diaryState}>
+            <DiaryDispatchContext.Provider value={diaryDispatch}>
+              <DiaryNextIdContext.Provider value={diaryNextId}> */}
+                {children}
+              {/* </DiaryNextIdContext.Provider>
+            </DiaryDispatchContext.Provider>
+          </DiaryStateContext.Provider> */}
           </ThemeContext.Provider>
         </TodoNextIdContext.Provider>
       </TodoDispatchContext.Provider>
@@ -125,3 +174,27 @@ export function useTheme() {
   }
   return context
 }
+
+// export function useDiaryState() {
+//   const context = useContext(DiaryStateContext)
+//   if (!context) {
+//     throw new Error('Cannot find DiaryProvider')
+//   }
+//   return context
+// }
+
+// export function useDiaryDispatch() {
+//   const context = useContext(DiaryDispatchContext)
+//   if (!context) {
+//     throw new Error('Cannot find DiaryProvider')
+//   }
+//   return context
+// }
+
+// export function useDiaryNextId() {
+//   const context = useContext(DiaryNextIdContext)
+//   if (!context) {
+//     throw new Error('Cannot find DiaryProvider')
+//   }
+//   return context
+// }

@@ -8,6 +8,7 @@ import {TodoProvider} from './TodoContext';
 import {Routes, Route, Link} from 'react-router-dom';
 import { sunriseTheme, dayTheme, sunsetTheme, nightTheme } from './theme';
 import { useState } from 'react';
+import DiaryList from './component/DiaryList';
 
 const backgroundChange = keyframes`
   0% {
@@ -38,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 900px;
+      height: 100vh;
       overflow: hidden;
       transition: all ease 2s 1s;
       animation : ${backgroundChange} 10s ease-in-out infinite;
@@ -64,6 +65,7 @@ function App() {
             <Route path="/" element={<Main toggleMode={toggleMode}/>} />
             <Route path="/todo" element={<TodoTemplate />} />
             <Route path="/diary" element={<DiaryTemplate />} />
+            <Route path="/diary-list" element={<DiaryList />} />
           </Routes>
         </ThemeProvider>
       </TodoProvider>
