@@ -147,7 +147,6 @@ function TodoItem({id, done, text}) {
     })
     onEdit()
   }
-  
   return (
     <TodoItemBlock>
       <CheckCircle done={done} onClick={onToggle}>
@@ -159,7 +158,7 @@ function TodoItem({id, done, text}) {
         </Editing>
       </>
       )
-      : (<Text done={done} >{text}</Text>)}
+      : (<Text done={done}>{text}</Text>)}
       
       {edit ? (<>
       <Finish onClick={onModify}>

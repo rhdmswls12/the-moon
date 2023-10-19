@@ -9,6 +9,7 @@ import {Routes, Route, Link} from 'react-router-dom';
 import { sunriseTheme, dayTheme, sunsetTheme, nightTheme } from './theme';
 import { useState } from 'react';
 import DiaryList from './component/DiaryList';
+import DiaryListTemplate from './component/DiaryListTemplate';
 
 const backgroundChange = keyframes`
   0% {
@@ -65,7 +66,7 @@ function App() {
             <Route path="/" element={<Main toggleMode={toggleMode}/>} />
             <Route path="/todo" element={<TodoTemplate />} />
             <Route path="/diary" element={<DiaryTemplate />} />
-            <Route path="/diary-list" element={<DiaryList />} />
+            <Route path="/diary-list" element={<DiaryListTemplate />} />
           </Routes>
         </ThemeProvider>
       </TodoProvider>
