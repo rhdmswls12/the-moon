@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import DiaryItem from "./DiaryItem";
+import { useDiaryState } from "../TodoContext";
 
 const DiaryListBlock = styled.div`
   flex: 1;
@@ -10,6 +11,7 @@ const DiaryListBlock = styled.div`
 export default function DiaryList({month}) {
   const diaryString = window.localStorage.getItem('Diaries')
   const diaryJson = JSON.parse(diaryString)
+  const diaries = useDiaryState()
   
   return (
     <>

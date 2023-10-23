@@ -32,7 +32,7 @@ const backgroundModes = [
 let initialDiary = [
   {
     id: 1,
-    text:'테스트'
+    text:''
   }
 ]
 
@@ -86,7 +86,6 @@ function todoReducer(state, action) { // 복잡한 로직을 처리하여 상태
 function diaryReducer(state, action) {
   switch(action.type) {
     case 'CREATE':
-      console.log(state)
       state = state.concat(action.diary)
       if (state[0].id == 1) {
         state.splice(0, 1)
@@ -96,21 +95,20 @@ function diaryReducer(state, action) {
       return state
 
     case 'UPDATE':
-      return state
-
-    case 'SAVE':
-      return state
+      const diaryStringForUpdate = window.localStorage.getItem('Diaries')
+      const diaryJsonForUpdate = JSON.parse(diaryStringForUpdate)
+      const listForUpdate = state.map(item =>
+      item.id === action.diary.id ? {...item, text: action.diary.text} : item)
+      window.localStorage.setItem('Diaries', JSON.stringify(listForUpdate))
+      return diaryJsonForUpdate
       
     case 'DELETE':
       const diaryStringForDelete = window.localStorage.getItem('Diaries')
       const diaryJsonForRemove = JSON.parse(diaryStringForDelete)
-      if (diaryJsonForRemove.length > 0) {
-        const filteredList = state.filter(todo => todo.id !== action.id)
-        window.localStorage.setItem('Diaries', JSON.stringify(filteredList))
-        return diaryJsonForRemove
-      } else {
-        return initialDiary
-      }
+      const list = state.filter(diary => diary.id !== action.id)
+      window.localStorage.setItem('Diaries', JSON.stringify(list))
+      console.log(diaryJsonForRemove)
+      return diaryJsonForRemove
 
     default: 
       throw new Error(`Unhandled action type: ${action.type}`)

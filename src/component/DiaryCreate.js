@@ -1,5 +1,6 @@
 import styled, {css} from "styled-components";
 import {MdOutlineSaveAlt} from 'react-icons/md';
+import {BsFillBookmarkFill} from 'react-icons/bs'
 import {SiBookstack} from 'react-icons/si'
 import { useState } from "react";
 import { useDiaryDispatch, useDiaryNextId } from "../TodoContext";
@@ -12,12 +13,34 @@ const DiaryArea = styled.div`
  position: relative;
  border-radius: 16px;
 `
+const BookMark = styled.div`
+  color: #38d9a9;
+  &: hover {
+    color: #20c997;
+  }
+  &: active {
+    color: #fa5252;
+  }
+  z-index: 5;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  display: block;
+  font-size: 60px;
+  position: absolute;
+  top: -20px;
+  right: 20px;
+  ${props =>
+    props.bookmark &&
+    css`
+    color: #fa5252;`}
+`
 const Diary = styled.form`
   textarea {
     resize: none;
     border: none;
-    width: 448px;
-    height: 550px;
+    width: 348px;
+    height: 450px;
     background: #fff;
     border-radius: 16px;
     position: relative;
@@ -84,10 +107,14 @@ const Upload = styled.button`
 
 function DiaryCreate() {
   const [value, setValue] = useState('');
+  const [bookmark, setBookmark] = useState(false)
   const today = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`
 
   const dispatch = useDiaryDispatch();
   const nextId = useDiaryNextId();
+  const onBookmark = () => {
+    setBookmark(!bookmark)
+  }
   const onChange = e => setValue(e.target.value);
   const onSubmit = e => {
     e.preventDefault();
@@ -97,14 +124,18 @@ function DiaryCreate() {
         id: nextId.current,
         date: today,
         text: value,
-        bookmark: false
+        bookmark: bookmark
       }
     })
     setValue('')
+    setBookmark(false)
     nextId.current += 1;
   }
   return (
     <>
+      <BookMark bookmark={bookmark} onClick={onBookmark}>
+          <BsFillBookmarkFill/>
+        </BookMark>
       <DiaryArea>
       <Diary>
         <textarea 
