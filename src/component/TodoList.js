@@ -17,7 +17,7 @@ export default function TodoList() {
   <>
     <TodoListBlock>
     { 
-    todoJson.map(todo => (
+    todoJson && todoJson.map(todo => (
       <TodoItem 
       key={todo.id}
       id={todo.id}
