@@ -51,7 +51,6 @@ function todoReducer(state, action) { // 복잡한 로직을 처리하여 상태
         }
         todos = JSON.stringify(todosJson)
         window.localStorage.setItem('ToDoList', todos)
-        console.log(todosJson)
       }
       
       return todosJson 
