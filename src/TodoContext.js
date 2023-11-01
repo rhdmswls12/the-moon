@@ -47,6 +47,7 @@ function todoReducer(state, action) { // 복잡한 로직을 처리하여 상태
       } 
       const objString = JSON.stringify(state)
       window.localStorage.setItem('ToDoList', objString)
+      return state
       
     case 'TOGGLE':
       const todoString = window.localStorage.getItem('ToDoList')
@@ -67,13 +68,9 @@ function todoReducer(state, action) { // 복잡한 로직을 처리하여 상태
     case 'REMOVE':
       const todoStringForRemove = window.localStorage.getItem('ToDoList')
       const todoJsonForRemove = JSON.parse(todoStringForRemove)
-      if (todoJsonForRemove.length > 0) {
-        const filteredList = state.filter(todo => todo.id !== action.id)
-        window.localStorage.setItem('ToDoList', JSON.stringify(filteredList))
-        return todoJsonForRemove
-      } else {
-        return initialTodos
-      }
+      const filteredList = state.filter(todo => todo.id !== action.id)
+      window.localStorage.setItem('ToDoList', JSON.stringify(filteredList))
+      return todoJsonForRemove
 
     default: 
       throw new Error(`Unhandled action type: ${action.type}`)
