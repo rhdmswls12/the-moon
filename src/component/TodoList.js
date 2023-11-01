@@ -13,7 +13,7 @@ export default function TodoList() {
                                // todos를 사용하는 부분이 없는데도 해당 코드 없으면 에러 발생함.
   // const todoString = window.localStorage.getItem('ToDoList')
   // const todoJson = JSON.parse(todoString)
-  // console.log(todos)
+  console.log(todos)
   return (
   <>
     <TodoListBlock>

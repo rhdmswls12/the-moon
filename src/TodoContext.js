@@ -133,7 +133,7 @@ const DiaryNextIdContext = createContext();
 export function TodoProvider({children}) {
   const [state, dispatch] = useReducer(todoReducer, initialTodos) // useReducer 사용, 초기값은 initialTodos고 dispatch로 주문(=action)이 들어오면 todoReducer 함수를 실행하여 주문에 대한 로직을 처리해 변경된 state를 반환한다.
   const nextId = useRef(state && state[state.length-1].id+1);
-
+  
   const [diaryState, diaryDispatch] = useReducer(diaryReducer, initialDiary)
   const diaryNextId = useRef(state && state[state.length-1].id+1)
  
