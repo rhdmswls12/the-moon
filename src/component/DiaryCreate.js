@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useDiaryDispatch, useDiaryNextId } from "../TodoContext";
 import React from "react";
 import { Link } from "react-router-dom";
+import {AiFillHome} from 'react-icons/ai'
 
 const DiaryArea = styled.div`
  height: 100%;
@@ -104,6 +105,19 @@ const Upload = styled.button`
   border: none;
   outline: none;
 `
+const Home = styled.div`
+  color: #fff;
+  &: hover {
+    color: #1e1e22;
+  }
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  font-size: 60px;
+  position: absolute;
+  top: -54px;
+  left: 20px;
+`
 
 function DiaryCreate() {
   const [value, setValue] = useState('');
@@ -133,6 +147,11 @@ function DiaryCreate() {
   }
   return (
     <>
+      <Link to="/">
+        <Home>
+          <AiFillHome />
+        </Home>
+      </Link>
       <BookMark bookmark={bookmark} onClick={onBookmark}>
           <BsFillBookmarkFill/>
         </BookMark>

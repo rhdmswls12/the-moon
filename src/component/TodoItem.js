@@ -154,7 +154,7 @@ function TodoItem({id, done, text}) {
       </CheckCircle>
       {edit ? (
       <>
-        <Editing placeholder={text} value={value} onChange={onChange}>
+        <Editing value={value} onChange={onChange}>
         </Editing>
       </>
       )

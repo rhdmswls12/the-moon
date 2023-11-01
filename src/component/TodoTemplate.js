@@ -18,10 +18,12 @@ const TodoTemplateBlock = styled.div`
 
 export default function TodoTemplate() {
   return (
-    <TodoTemplateBlock>
-      <TodoHead />
-      <TodoList />
-      <TodoCreate />
-    </TodoTemplateBlock>
+    <>
+      <TodoTemplateBlock>
+        <TodoHead />
+        <TodoList />
+        <TodoCreate />
+      </TodoTemplateBlock>
+    </>
   )
 }

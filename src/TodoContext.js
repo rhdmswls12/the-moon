@@ -36,19 +36,25 @@ let initialDiary = [
   }
 ]
 
+let todos = window.localStorage.getItem('ToDoList')
+let todosJson = JSON.parse(todos)
 // 투두 리스트
 function todoReducer(state, action) { // 복잡한 로직을 처리하여 상태 값을 변경 시키는 부분
   switch (action.type) {
     case 'CREATE':
       
-      state = state.concat(action.todo)
-      if (state[0].id == 1) {
-        state.splice(0, 1)
+      if (todosJson) {
+        todosJson = state.concat(action.todo)
+        
+        if (todosJson[0].id == 1) {
+          todosJson.splice(0, 1)
+        }
+        todos = JSON.stringify(todosJson)
+        window.localStorage.setItem('ToDoList', todos)
+        console.log(todosJson)
       }
-      const objString = JSON.stringify(state)
-      window.localStorage.setItem('ToDoList', objString)
       
-      return state 
+      return todosJson 
       
     case 'TOGGLE':
       const todoString = window.localStorage.getItem('ToDoList')

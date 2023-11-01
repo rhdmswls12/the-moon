@@ -48,7 +48,7 @@ const GlobalStyle = createGlobalStyle`
 `
 
 function App() {
-  const [modes, setMode] = useState([sunriseTheme, dayTheme, sunsetTheme, nightTheme ])
+  const [modes, setMode] = useState([nightTheme, sunriseTheme, dayTheme, sunsetTheme ])
   const toggleMode = () => {
     let copy = [...modes]
     copy.push(modes[0])

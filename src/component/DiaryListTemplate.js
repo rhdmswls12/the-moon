@@ -1,5 +1,9 @@
 import styled from "styled-components"
 import DiaryList from "./DiaryList"
+import {BsFillCalendarCheckFill} from 'react-icons/bs'
+import {FaPenNib} from 'react-icons/fa6'
+import {AiFillHome} from 'react-icons/ai'
+import { Link } from "react-router-dom";
 import { useDiaryState } from "../TodoContext"
 
 
@@ -8,6 +12,7 @@ const DiaryHeadBlock = styled.div`
   padding-left: 32px;
   padding-right: 32px;
   border-bottom: 1px solid #e9ecef;
+  position: relative;
   text-align: left;
   h1 {
     margin: 0;
@@ -50,6 +55,57 @@ const Month = styled.h3`
   font-weight: 700;
   font-size: 30px;
 `
+const DiaryIcon = styled.button`
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  position: absolute;
+  right: 75px;
+  bottom: 10px;
+  font-size: 20px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #1e1e22;
+  &:hover {
+    color: #fff;
+    background: #1e1e22;
+    cursor: pointer;
+  }
+`
+const TodoIcon = styled.button`
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  position: absolute;
+  right: 30px;
+  bottom: 10px;
+  font-size: 20px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #1e1e22;
+  &:hover {
+    color: #fff;
+    background: #1e1e22;
+    cursor: pointer;
+  }
+`
+const Home = styled.div`
+  color: #fff;
+  &: hover {
+    color: #1e1e22;
+  }
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  font-size: 60px;
+  position: absolute;
+  top: -54px;
+  left: 20px;
+`
 
 export default function DiaryListTemplate() {
   const diaryString = window.localStorage.getItem('Diaries')
@@ -60,8 +116,23 @@ export default function DiaryListTemplate() {
   let newMonth = [...monthSet]
   return(
     <DiaryListTemplateBlock>
+      <Link to="/">
+        <Home>
+          <AiFillHome />
+        </Home>
+      </Link>
       <DiaryHeadBlock>
         <h1>Diaries</h1>
+        <Link to="/diary"> 
+          <DiaryIcon>
+            <FaPenNib />
+          </DiaryIcon>
+        </Link> 
+        <Link to="/todo">
+          <TodoIcon>
+            <BsFillCalendarCheckFill />
+          </TodoIcon>
+        </Link>
       </DiaryHeadBlock>
       {newMonth.map(month => (
         <MonthBlock>
